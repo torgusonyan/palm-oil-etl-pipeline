@@ -36,11 +36,11 @@ def extract_data(file_path: str):
     Example use:
     df_raw = extract_data("raw_dataset.csv")
     '''
-    # Inisialisasi SparkSession
+    # Initialize the SparkSession
     spark = SparkSession.builder.appName("Palm-Oil-Extract-Pipeline").getOrCreate()
 
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"File raw data tidak ditemukan di path: {file_path}")
+        raise FileNotFoundError(f"Raw data file not found at path: {file_path}")
 
     # Read raw CSV file into PySpark DataFrame
     df_spark = spark.read.csv(file_path, header=True, inferSchema=True)

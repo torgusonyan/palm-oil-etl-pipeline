@@ -1,12 +1,12 @@
 name: de-lab
 
 services:
-  # Tempat kerja: Jupyter (8888) + Airflow (8080) + Spark
+  # Workspace: Jupyter (8888) + Airflow (8080) + Spark
   lab:
     build: .
     image: de-lab:py313
     env_file:
-      - path: .env              # PG_* (PostgreSQL di laptop), MONGO_URI, SERVICES
+      - path: .env              # PG_* (local PostgreSQL), MONGO_URI, SERVICES
         required: false
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${AIRFLOW_DB_USER:-airflow}:${AIRFLOW_DB_PASSWORD:-airflow}@airflow-db:5432/${AIRFLOW_DB_NAME:-airflow}
@@ -15,17 +15,17 @@ services:
       - "8080:8080"   # Airflow
       - "4040:4040"   # Spark UI
     volumes:
-      - ./dags:/opt/airflow/dags            # DIGANTI: Memetakan folder dags laptop ke container Airflow
+      - ./dags:/opt/airflow/dags            # Map the local dags folder into the Airflow container
       - airflow-logs:/opt/airflow/logs
     extra_hosts:
-      - "host.docker.internal:host-gateway"   # supaya bisa connect ke PostgreSQL di laptop
+      - "host.docker.internal:host-gateway"   # Allow connecting to a PostgreSQL instance on the host
     depends_on:
       airflow-db:
         condition: service_healthy
     mem_limit: 3g
     restart: unless-stopped
 
-  # Database internal Airflow (riwayat run, status task). Tidak dipakai untuk data tugas.
+  # Airflow's internal metadata database (run history, task status). Not used for the pipeline data.
   airflow-db:
     image: postgres:17-alpine
     environment:
