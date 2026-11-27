@@ -2,15 +2,18 @@
 =================================================
 Apache Airflow DAG Orchestration
 
-Author : Ryan Farid
-Batch : CODA
+Author : Ryan Farid Pratama
 
 This script configures the automated workflow orchestration schedule for the ETL pipeline (Extract >> Transform >> Load) using Apache Airflow.
 
 Schedule Interval: Every Saturday at 09:10 AM, 09:20 AM, and 09:30 AM starting November 1, 2024.
 =================================================
 '''
+import os
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+load_dotenv()
+
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from extract import extract_data
@@ -55,7 +58,7 @@ def run_load_task(**kwargs) -> None:
         )
         
 default_args = {
-    'owner': 'Your Name',
+    'owner': 'Ryan Farid Pratama',
     'depends_on_past': False,
     'email_on_failure': False,
     'email_on_retry': False,

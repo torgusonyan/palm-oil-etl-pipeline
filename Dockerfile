@@ -1,7 +1,7 @@
-# DE Lab: Python 3.13 + Java (untuk Spark) + library di requirements.txt
+# DE Lab: Python 3.13 + Java (for Spark) + the packages in requirements.txt
 FROM python:3.13-slim
 
-# 1. Java untuk Spark, tini untuk menjalankan Jupyter & Airflow bersamaan, user "student"
+# 1. Java for Spark, tini to run Jupyter & Airflow together, and a "student" user
 RUN apt-get update \
  && apt-get install -y --no-install-recommends openjdk-21-jre-headless tini procps \
  && rm -rf /var/lib/apt/lists/* \
@@ -9,7 +9,7 @@ RUN apt-get update \
  && mkdir -p /opt/airflow/logs /workspace \
  && chown -R student /opt/airflow /workspace
 
-# 2. Library Python. Versi mengikuti daftar resmi Airflow (constraints) supaya tidak bentrok
+# 2. Python packages. Versions follow Airflow's official constraints to avoid conflicts
 ARG AIRFLOW_VERSION=3.3.2
 COPY --from=ghcr.io/astral-sh/uv:0.13.6 /uv /usr/local/bin/uv
 ADD https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-3.13.txt /tmp/constraints.txt
@@ -22,16 +22,16 @@ RUN sed -i '/^pandas==/d' /tmp/constraints.txt \
  && find /opt/venv -type d -name tests -not -path "*/great_expectations/*" -prune -exec rm -rf {} + \
  && chown -R student /opt/venv
 
-# 3. Driver PostgreSQL untuk Spark (df.write.jdbc)
+# 3. PostgreSQL driver for Spark (df.write.jdbc)
 ADD --chmod=644 https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.14/postgresql-42.7.14.jar \
     /opt/venv/lib/python3.13/site-packages/pyspark/jars/
 
-# 4. Setting Spark & script start. sed: buang line ending Windows (CRLF) kalau ada
+# 4. Spark config & startup script. sed: strip Windows (CRLF) line endings if present
 COPY spark-defaults.conf /opt/spark-conf/spark-defaults.conf
 COPY --chmod=755 entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r$//' /entrypoint.sh /opt/spark-conf/spark-defaults.conf
 
-# 5. Setting lingkungan
+# 5. Environment settings
 ENV PATH=/opt/venv/bin:$PATH \
     TZ=Asia/Jakarta \
     SPARK_CONF_DIR=/opt/spark-conf \
