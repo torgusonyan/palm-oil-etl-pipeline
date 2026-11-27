@@ -1,0 +1,18 @@
+{
+  "actions": [
+    {
+      "name": "update_data_docs",
+      "site_names": [],
+      "type": "update_data_docs"
+    }
+  ],
+  "id": "325dfdeb-5da5-4076-a238-eafd1787bc4b",
+  "name": "palm_oil_checkpoint",
+  "result_format": "SUMMARY",
+  "validation_definitions": [
+    {
+      "id": "538fb3d9-b680-4037-b2dc-39e101d55bbb",
+      "name": "validation-definition-palm-oil"
+    }
+  ]
+}

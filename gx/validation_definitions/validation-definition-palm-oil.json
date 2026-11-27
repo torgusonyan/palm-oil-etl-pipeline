@@ -1,0 +1,22 @@
+{
+  "data": {
+    "asset": {
+      "id": "029116eb-3e7f-4f89-807d-c72af72c3e16",
+      "name": "palm-oil-asset"
+    },
+    "batch_definition": {
+      "id": "0276507d-de77-40b2-938b-e79d1dedd743",
+      "name": "batch-definition-palm-oil"
+    },
+    "datasource": {
+      "id": "7122bc14-a77c-4a96-9e2e-0ab54a3d8122",
+      "name": "csv-raw-data-palm-oil"
+    }
+  },
+  "id": "538fb3d9-b680-4037-b2dc-39e101d55bbb",
+  "name": "validation-definition-palm-oil",
+  "suite": {
+    "id": "86ef8c17-54c2-44d4-aac5-a109d1636b63",
+    "name": "expectation-palm-oil-dataset"
+  }
+}

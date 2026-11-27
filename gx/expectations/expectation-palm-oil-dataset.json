@@ -1,0 +1,89 @@
+{
+  "expectations": [
+    {
+      "id": "bf499d9e-710e-431f-9825-2cc642c4902a",
+      "kwargs": {
+        "column": "transaction_route_id"
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "cd815a24-9f4b-44d3-8f94-942eb870d031",
+      "kwargs": {
+        "column": "volume",
+        "max_value": 5000000.0,
+        "min_value": 0.0
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "b7b978aa-8583-481c-b6ff-970c303ebcf5",
+      "kwargs": {
+        "column": "product_type",
+        "value_set": [
+          "CRUDE PALM OIL",
+          "REFINED PALM OIL"
+        ]
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_values_to_be_in_set"
+    },
+    {
+      "id": "a9267082-1a78-4512-aadf-b59bf4ab1444",
+      "kwargs": {
+        "column": "total_emission_exposure",
+        "type_list": [
+          "float",
+          "float64",
+          "integer"
+        ]
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_values_to_be_in_type_list"
+    },
+    {
+      "id": "8102e571-b125-4ad8-b0b6-054b51650f17",
+      "kwargs": {
+        "column": "volume"
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_to_exist"
+    },
+    {
+      "id": "128ec99d-4e39-4872-842d-d1ca5a71dddb",
+      "kwargs": {
+        "column": "province_of_production",
+        "value_set": [
+          "KALIMANTAN TENGAH"
+        ]
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_most_common_value_to_be_in_set"
+    },
+    {
+      "id": "5ac9dc69-b3e4-4592-9d39-be67b80b3395",
+      "kwargs": {
+        "column": "province_of_production_trase_id",
+        "max_value": 10,
+        "min_value": 4
+      },
+      "meta": {},
+      "severity": "critical",
+      "type": "expect_column_value_lengths_to_be_between"
+    }
+  ],
+  "id": "86ef8c17-54c2-44d4-aac5-a109d1636b63",
+  "meta": {
+    "great_expectations_version": "1.24.1"
+  },
+  "name": "expectation-palm-oil-dataset",
+  "notes": null
+}
