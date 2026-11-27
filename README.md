@@ -6,8 +6,13 @@ with **Great Expectations**, orchestrated and scheduled with **Apache Airflow**,
 and loaded into a **MongoDB Atlas** (NoSQL) database. The whole stack runs in a
 single **Docker** container (JupyterLab + Airflow + Spark).
 
-**Author:** Ryan Farid Pratama
+**Author:** Ryan Farid Pratama <br>
 **Tech Stack:** Python · PySpark · Pandas · Great Expectations · Apache Airflow · MongoDB · Docker
+
+> **Scope:** This project covers the data engineering pipeline (extraction,
+> transformation, validation, orchestration, and loading). The EDA in the
+> notebook explains *why* the cleaning decisions are made; downstream analytical
+> querying is out of scope.
 
 ---
 
